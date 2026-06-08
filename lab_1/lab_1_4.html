@@ -79,7 +79,7 @@
             return primes;
         }
 
-        document.getElementById('findBtn').addEventListener('click', function() {
+        function findPrimes() {
             const input = document.getElementById('n');
             const resultArea = document.getElementById('result');
             
@@ -101,6 +101,15 @@
                 resultArea.value = "Простых чисел в этом диапазоне нет";
             } else {
                 resultArea.value = `Простые числа от 2 до ${n}:\n${primes.join(', ')}`;
+            }
+        }
+
+        document.getElementById('findBtn').addEventListener('click', findPrimes);
+        
+        document.getElementById('n').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                findPrimes();
             }
         });
     </script>
