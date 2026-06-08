@@ -37,7 +37,7 @@
         <label>Количество ворон:</label>
         <input type="number" id="num" required>
 
-        <button type="button" id="countBtn">Считать</button>
+        <button type="submit" id="countBtn">Считать</button>
     </form>
 
     <script>
@@ -63,7 +63,9 @@
             }
         }
 
-        document.getElementById('countBtn').addEventListener('click', function() {
+        document.getElementById('ravenForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
             const input = document.getElementById('num');
             let num = parseInt(input.value, 10);
 
