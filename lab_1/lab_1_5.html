@@ -81,7 +81,7 @@
             }
         }
 
-        document.getElementById('drawBtn').addEventListener('click', function() {
+        function handleDraw() {
             const input = document.getElementById('rows');
             let rowsCount = parseInt(input.value, 10);
             
@@ -92,6 +92,15 @@
             
             drawTable(rowsCount);
             alert(`Таблица из ${rowsCount} строк выведена в консоль браузера (F12)`);
+        }
+
+        document.getElementById('drawBtn').addEventListener('click', handleDraw);
+        
+        document.getElementById('rows').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleDraw();
+            }
         });
     </script>
 </body>
