@@ -104,10 +104,20 @@ export class Book {
     }
 }
 
+/**
+ * Функция, проверяющая, пустой ли объект
+ * @param {Object} obj - Проверяемый объект
+ * @returns {boolean} true, если объект пустой, иначе false
+ */
 export function isEmpty(obj) {
     return Reflect.ownKeys(obj).length === 0;
 }
 
+/**
+ * Добавляет методы addClass и removeClass к объекту для работы с CSS-классами
+ * @param {Object} obj - Целевой объект, который должен иметь свойство className
+ * @returns {Object} Тот же объект с добавленными методами addClass и removeClass
+ */
 export function addClassMethods(obj) {
     obj.addClass = function(cls) {
         const classes = this.className ? this.className.split(' ') : [];
@@ -131,12 +141,21 @@ export function addClassMethods(obj) {
     return obj;
 }
 
+/**
+ * Функция для определение количества секунд, прошедших с начала дня
+ * @returns {number} количество секунд, прошедших с начала дня
+ */
 export function getSecondsToday() {
     const now = new Date();
     const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     return Math.floor((now - startOfDay) / 1000);
 }
 
+/**
+ * Функция для форматирования даты в формате ДД.ММ.ГГ
+ * @param {Date} date - Объект даты для форматирования
+ * @returns {string} Отформатированная дата в виде строки "ДД.ММ.ГГ"
+ */
 export function formatDate(date) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -144,6 +163,12 @@ export function formatDate(date) {
     return `${day}.${month}.${year}`;
 }
 
+/**
+ * Функция для строгого сравнения объектов (неглубокое сравнение через JSON)
+ * @param {*} obj1 - Первый объект для сравнения
+ * @param {*} obj2 - Второй объект для сравнения
+ * @returns {boolean} Результат сравнения (true, если объекты равны по содержимому)
+ */
 export function deepEqual(obj1, obj2) {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
