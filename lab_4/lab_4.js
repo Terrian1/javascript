@@ -88,7 +88,7 @@ export class Book {
      * Метод, который выводит в консоль название и цену книги
      */
     show() {
-        console.log(`Книга: "${this.title}", Цена: ${this.#price} руб.`);
+        console.log(`Книга: "${this._title}", Цена: ${this.#price} руб.`);
     }
 
     /**
