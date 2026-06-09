@@ -19,7 +19,7 @@ export class Book {
      * @throws {Error} Если валидация не пройдена
      */
     constructor(title, pubYear, price) {
-        this.title = title; 
+        this._title = title; 
         this._pubYear = pubYear;
         this.#price = price;
     }
@@ -33,7 +33,7 @@ export class Book {
         if (typeof value !== 'string' || value.trim() === '') {
             throw new Error('Название книги не может быть пустой строкой');
         }
-        this.title = value;  
+        this._title = value;  
     }
 
     /**
@@ -41,7 +41,7 @@ export class Book {
      * @returns {string} Название книги
      */
     get title() {
-        return this.title;
+        return this._title;
     }
 
     /**
