@@ -19,10 +19,16 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .info {
+            margin: 20px;
+            font-size: 12px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <div id="myDiv" class="editable-div">Это редактируемый текст. Нажмите Ctrl+E для редактирования, Ctrl+S для сохранения изменений.</div>
+    <div class="info">💾 Данные автоматически сохраняются в localStorage при нажатии Ctrl+S</div>
 
     <script>
         'use strict';
@@ -30,6 +36,20 @@
         const div = document.getElementById('myDiv');
         let isEditing = false;
         let originalContent = '';
+        
+        function loadFromLocalStorage() {
+            const savedText = localStorage.getItem('editableDivContent');
+            if (savedText !== null) {
+                div.innerHTML = savedText;
+            }
+        }
+        
+        function saveToLocalStorage(content) {
+            localStorage.setItem('editableDivContent', content);
+            console.log('Сохранено в localStorage:', content);
+        }
+        
+        loadFromLocalStorage();
         
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.key === 'e') {
@@ -49,8 +69,11 @@
                 e.preventDefault();
                 
                 const textarea = div.querySelector('textarea');
-                div.innerHTML = textarea.value;
+                const newContent = textarea.value;
+                div.innerHTML = newContent;
                 isEditing = false;
+                
+                saveToLocalStorage(newContent);
             }
             else if (e.key === 'Escape' && isEditing) {
                 div.innerHTML = originalContent;
