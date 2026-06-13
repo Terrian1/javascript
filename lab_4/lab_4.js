@@ -3,6 +3,7 @@
  */
 export class Book {
     /** @type {string} - Название книги */
+    _title;
     
     /** @type {number} - Год издания (защищенное поле) */
     _pubYear;
@@ -18,7 +19,7 @@ export class Book {
      * @throws {Error} Если валидация не пройдена
      */
     constructor(title, pubYear, price) {
-        this.title = title; 
+        this._title = title; 
         this._pubYear = pubYear;
         this.#price = price;
     }
@@ -32,7 +33,7 @@ export class Book {
         if (typeof value !== 'string' || value.trim() === '') {
             throw new Error('Название книги не может быть пустой строкой');
         }
-        this.title = value;  
+        this._title = value;  
     }
 
     /**
@@ -40,7 +41,7 @@ export class Book {
      * @returns {string} Название книги
      */
     get title() {
-        return this.title;
+        return this._title;
     }
 
     /**
@@ -87,7 +88,7 @@ export class Book {
      * Метод, который выводит в консоль название и цену книги
      */
     show() {
-        console.log(`Книга: "${this.title}", Цена: ${this.#price} руб.`);
+        console.log(`Книга: "${this._title}", Цена: ${this.#price} руб.`);
     }
 
     /**
