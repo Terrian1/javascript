@@ -52,6 +52,56 @@
         const table = document.getElementById('editableTable');
         let editingCell = null;
         
+        const STORAGE_KEY = 'tableData';
+        
+        function saveTableData() {
+            const rows = table.rows;
+            const data = [];
+            
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const rowData = [];
+                for (let j = 0; j < row.cells.length; j++) {
+                    rowData.push(row.cells[j].innerHTML);
+                }
+                data.push(rowData);
+            }
+            
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        function loadTableData() {
+            const savedData = sessionStorage.getItem(STORAGE_KEY);
+            if (!savedData) return false;
+            
+            try {
+                const data = JSON.parse(savedData);
+                const rows = table.rows;
+                
+                if (data.length !== rows.length) return false;
+                
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (data[i].length !== row.cells.length) return false;
+                    
+                    for (let j = 0; j < row.cells.length; j++) {
+                        row.cells[j].innerHTML = data[i][j];
+                    }
+                }
+                return true;
+            } catch (e) {
+                console.error('Ошибка загрузки данных:', e);
+                return false;
+            }
+        }
+        
+        function updateCell(cell, newValue) {
+            cell.innerHTML = newValue;
+            cell.classList.remove('editing');
+            editingCell = null;
+            saveTableData();
+        }
+        
         function startEdit(cell) {
             if (editingCell) return;
             
@@ -82,9 +132,7 @@
             textarea.focus();
             
             okBtn.onclick = function() {
-                cell.innerHTML = textarea.value;
-                cell.classList.remove('editing');
-                editingCell = null;
+                updateCell(cell, textarea.value);
             };
             
             cancelBtn.onclick = function() {
@@ -93,6 +141,8 @@
                 editingCell = null;
             };
         }
+        
+        loadTableData();
         
         table.addEventListener('click', function(e) {
             const cell = e.target.closest('td');
