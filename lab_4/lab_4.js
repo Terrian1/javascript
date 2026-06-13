@@ -3,7 +3,6 @@
  */
 export class Book {
     /** @type {string} - Название книги */
-    // title; 
     
     /** @type {number} - Год издания (защищенное поле) */
     _pubYear;
