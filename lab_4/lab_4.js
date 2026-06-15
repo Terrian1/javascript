@@ -19,8 +19,17 @@ export class Book {
      * @throws {Error} Если валидация не пройдена
      */
     constructor(title, pubYear, price) {
-        this._title = title; 
+        if (typeof value !== 'string' || value.trim() === '') {
+            throw new Error('Название книги не может быть пустой строкой');
+        }
+        this._title = title;
+        if (typeof value !== 'number' || isNaN(value) || value <= 0) {
+            throw new Error('Год издания должен быть положительным числом');
+        }
         this._pubYear = pubYear;
+        if (typeof value !== 'number' || isNaN(value) || value <= 0) {
+            throw new Error('Цена должна быть положительным числом');
+        }
         this.#price = price;
     }
 
