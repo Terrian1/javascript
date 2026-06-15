@@ -18,7 +18,7 @@ export class Book {
      * @param {number} price - Цена книги (положительное число)
      * @throws {Error} Если валидация не пройдена
      */
-    constructor(title, pubYear, price) { // пустой коммит чтобы гитлаб раздуплился
+    constructor(title, pubYear, price) { // ещё один пустой коммит чтобы гитхаб раздуплился
         if (typeof title !== 'string' || title.trim() === '') {
             throw new Error('Название книги не может быть пустой строкой');
         }
