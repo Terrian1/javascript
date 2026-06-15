@@ -19,18 +19,18 @@ export class Book {
      * @throws {Error} Если валидация не пройдена
      */
     constructor(title, pubYear, price) { // ещё один пустой коммит чтобы гитхаб раздуплился
-        if (typeof title !== 'string' || title.trim() === '') {
-            throw new Error('Название книги не может быть пустой строкой');
-        }
-        this._title = title;
-        if (typeof pubYear !== 'number' || isNaN(pubYear) || pubYear <= 0) {
-            throw new Error('Год издания должен быть положительным числом');
-        }
-        this._pubYear = pubYear;
-        if (typeof price !== 'number' || isNaN(price) || price <= 0) {
-            throw new Error('Цена должна быть положительным числом');
-        }
-        this.#price = price;
+        // if (typeof title !== 'string' || title.trim() === '') {
+        //     throw new Error('Название книги не может быть пустой строкой');
+        // }
+        this.title = title;
+        // if (typeof pubYear !== 'number' || isNaN(pubYear) || pubYear <= 0) {
+        //     throw new Error('Год издания должен быть положительным числом');
+        // }
+        this.pubYear = pubYear;
+        // if (typeof price !== 'number' || isNaN(price) || price <= 0) {
+        //     throw new Error('Цена должна быть положительным числом');
+        // }
+        this.price = price;
     }
 
     /**
