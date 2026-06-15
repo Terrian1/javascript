@@ -20,6 +20,9 @@
         const book1 = new Book("Капитал", 1867, 900);
         book1.show();
 
+        const book1_ = new Book("", -1867, -900);
+        book1_.show();
+
         // 2. Попытка изменить значения свойств
         const book2 = new Book("Преступление и наказание", 1866, 500);
         console.log(`До изменения: ${book2.title}, ${book2.pubYear}, ${book2.price}`);
